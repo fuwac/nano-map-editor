@@ -1,0 +1,104 @@
+*{
+    margin : 0;
+    padding : 0;
+}
+body{
+    background-color: #000;
+    color : white;
+}
+
+$pixelWidth : 16px;
+$pixelHeight: 16px;
+$blockMaxH : 40;
+$blockMaxV : 30;
+
+#container{
+    //margin-left : $pixelWidth;
+    //margin-top : $pixelHeight;
+    width : 100%;
+    height: 100%;
+
+    #layout{
+        width : $pixelWidth * $blockMaxH;
+        height : $pixelHeight * $blockMaxV;
+        float : left;
+
+        ul{
+            list-style: none;
+
+            li.h-obj{
+                width:$pixelWidth - 1;
+                height:$pixelHeight - 1;
+                border-right:1px solid silver;
+                border-bottom:1px solid silver;
+                float : left;
+
+                img{
+                    -webkit-user-drag: none;
+                    width : 100%;
+                    height: 100%;
+                    object-fit: none;
+                    object-position: 0 0
+                }
+            }
+
+        }
+    }
+
+    #palette{
+        //margin-top : $pixelHeight;
+        position : absolute;
+        top : $pixelHeight * ($blockMaxV + 1);
+        left: $pixelWidth;
+
+        width : $pixelWidth * $blockMaxH;
+        height : $pixelHeight * 2;
+        clear : both;
+
+        ul{
+            list-style: none;
+
+            li.v-pal{
+                width:$pixelWidth - 1;
+                height:$pixelHeight - 1;
+                border-right:1px solid silver;
+                border-bottom:1px solid silver;
+                float : left;
+
+                img{
+                    width : 100%;
+                    height: 100%;
+                    object-fit: none;
+                    object-position: 0 0
+                }
+            }
+        }
+        div#selected{
+            clear:both;
+        }
+    }
+    #control{
+        //margin-top : $pixelHeight;
+        float : left;
+
+        div{
+            clear : both;
+            margin-left: 10px;
+            margin-top : 1em;
+
+            input#args,
+            input.trophy{
+                width :6em;
+            }
+        }
+
+        div.button{
+            width : 5em;
+            height: 1em;
+            text-align : center;
+            line-height: 1em;
+            border: 1px solid white;
+            cursor : pointer;
+        }
+    }
+}

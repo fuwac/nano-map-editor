@@ -1,0 +1,25 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "electron ."
+        },
+        {
+            "label": "release",
+            "type": "shell",
+            "command": "electron ."
+        },
+        {
+            "type": "npm",
+            "script": "build-sass",
+            "group": "build",
+            "problemMatcher": [],
+            "label": "npm: build-sass",
+            "detail": "node-sass --output-style compressed css/index.scss css/index.css"
+        }
+    ]
+}

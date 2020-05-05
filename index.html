@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NanoMapEditor</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+</head>
+<style>
+    [v-cloak]{ display : none; }
+</style>
+<body>
+<div id="container">
+    <div id="layout" @mouseenter="tipStyle.visibility='visible'" @mouseleave="tipStyle.visibility='hidden'">
+        <ul>
+            <li class="v-obj" v-for="objects in listObjects">
+                <ul>
+                    <li class="h-obj" v-for="object in objects" @mouseDown="setMouseDown(true)" @mouseup="setMouseDown(false)" @mousemove="infoHover($event,object);objset(object)" @click="setMouseDown(true);objset(object);setMouseDown(false)">
+                        <img :src="object.path">
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div id='tool-tip' v-bind:style='tipStyle' v-cloak>
+            {{hoverText}}
+        </div>
+    </div>
+    <div id="control">
+        <div class="button" @click="loadFile()">LOAD</div>
+        <div class="button" @click="saveFile()">SAVE</div>
+        <div class="button" @click="allClear()">CLEAR</div>
+        <div id="args">
+            object args<br/>
+            <input type="text" name="args" id="args" v-model="inputArgs">
+        </div>
+        <div id="trophy">
+            trophy time<br/>
+            <img src="img/trophy/trophy_gold.png"><input class="trophy" type="number" v-model="trophy.gold"><br/>
+            <img src="img/trophy/trophy_silver.png"><input class="trophy" type="number" v-model="trophy.silver"><br/>
+            <img src="img/trophy/trophy_bronze.png"><input class="trophy" type="number" v-model="trophy.bronze"><br/>
+        </div>
+    </div>
+    <div id="palette">
+        <ul>
+            <li class="v-pal" v-for="palette in listPalette">
+                <img :src="palette.path" @click="objsel(palette)">
+            </li>
+            <div id="selected" v-cloak>selected:{{selectedObj.id}}</div>
+        </ul>
+    </div>
+</div>
+</body>
+<script src="js/index.js"></script>
+</html>
